@@ -12,6 +12,7 @@ virt-install
 
 * **virt_install_import**: "namespace"
   * **name**: required. The name of the virtual machine
+  * **autostart**: optional default: true. Enable autostart.
   * **wait**: optional default: 0. The ```--wait``` option for the ```virt-install```
     command. A negative value will wait still the virtmachine is shutdown.
     0 will just start the virtual machine and disconnect. 

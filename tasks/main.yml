@@ -34,6 +34,13 @@
     _virt_install_cmd:
       "virt-install --import --wait {{ virt_install_import.wait | default(0) }} --name {{ virt_install_import.name }} --memory {{ virt_install_import.memory | default(1024) }} --vcpus {{ virt_install_import.vcpu | default(1) }} --virt-type {{ virt_install_import.virt_type | default('kvm') }} --graphics {{ virt_install.graphics | default('none') }} "
 
+- name: Add autostart to the cmd
+  set_fact:
+    _virt_install_cmd:
+      "{{ _virt_install_cmd }} --autostart"
+  when:
+    - virt_install_import.autostart|default(true)|bool
+
 - name: Add os_type to the cmd if defined
   set_fact:
     _virt_install_cmd:
