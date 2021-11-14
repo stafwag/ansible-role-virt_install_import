@@ -26,6 +26,10 @@
     loop_var: install
   tags:
     - install
+  when:
+    - ansible_distribution is defined
+    - ansible_os_family is defined
+    - ansible_distribution_major_version is defined
 
 # Create the virt-install command
 
