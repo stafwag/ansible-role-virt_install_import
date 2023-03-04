@@ -1,5 +1,5 @@
 ---
-- name: display the virt_install_import vars
+- name: Display the virt_install_import vars
   debug:
     msg:
       - "virt_install_import: {{ virt_install_import }}"
@@ -14,22 +14,14 @@
   when:
     - virt_install_import.name is not defined
 
-- name: install OS related packages
-  include_tasks: '{{ install }}'
-  with_first_found:
-    - 'install/{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml'
-    - 'install/{{ ansible_distribution }}.yml'
-    - 'install/{{ ansible_os_family }}.yml'
-    - 'install/{{ ansible_os_family | replace ("/","_") | replace(" ","_") }}.yml'
-    - install/defaults.yml
-  loop_control:
-    loop_var: install
+- name: Install virt-install related packages
+  include_tasks: install.yml
+  args:
+    apply:
+      tags:
+        - install
   tags:
     - install
-  when:
-    - ansible_distribution is defined
-    - ansible_os_family is defined
-    - ansible_distribution_major_version is defined
 
 # Create the virt-install command
 
@@ -74,7 +66,7 @@
   loop_control:
     loop_var: virt_disk 
 
-- name: display _virt_install_cmd
+- name: Display _virt_install_cmd
   debug:
     msg:
       - " _virt_install_cmd: {{ _virt_install_cmd }}"

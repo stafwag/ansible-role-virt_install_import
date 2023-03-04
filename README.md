@@ -4,9 +4,38 @@ An ansible role to import virtual machine with the ```virt-install import``` com
 
 ## Requirements
 
-virt-install
+This role depends on the ```virt-install``` command.
+The role will install the required packages on most GNU/Linux distributions.
 
-## Role Variables
+### Supported GNU/Linux Distributions
+
+* Archlinux
+* AlmaLinux
+* Debian
+* Centos
+* Fedora
+* RedHat
+* Rocky
+* Suse
+* Ubuntu
+
+## Role tasks, tags variables and templates
+
+### Tasks
+
+* **install**
+
+    All installation-related tasks are defined in the ```install``` playbook. This allows you to install the
+    required packages and start/enable the required service with ```tasks_from``` in the ```include_role```,
+    ```import_role```, … ansible modules.
+
+    See example below.
+
+### Tags
+
+* **install**
+
+  Install the required packages.
 
 ### Playbook related variables
 
@@ -30,6 +59,29 @@ virt-install
 None
 
 ## Example Playbooks
+
+### Install the virt-install packages with include_role
+
+```
+---
+- name: Install libvirt & co
+  gather_facts: true 
+  hosts: all
+  become: true
+  tasks:
+    - name: Install the requirements
+      include_role:
+        name: "{{ item }}"
+        tasks_from:
+          install
+      with_items:
+        - stafwag.libvirt 
+        - stafwag.qemu_img
+        - stafwag.cloud_localds
+        - stafwag.virt_install_import
+      tags:
+        - install
+```
 
 ### Import a virtual machine
  
