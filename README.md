@@ -79,8 +79,6 @@ None
         - stafwag.qemu_img
         - stafwag.cloud_localds
         - stafwag.virt_install_import
-      tags:
-        - install
 ```
 
 ### Import a virtual machine
@@ -113,4 +111,4 @@ MIT/BSD
 
 ## Author Information
 
-Created by Staf Wagemakers, email: staf@wagemakers.be, website: http://www.wagemakers.be.
+Created by Staf Wagemakers, email: staf@wagemakers.be, website: https://www.wagemakers.be, my company https://mask27.dev

@@ -1,0 +1,16 @@
+- name: Import a virtual machine
+  gather_facts: no 
+  become: true
+  hosts: localhost
+  roles:
+    - role: stafwag.virt_install_import
+      vars:
+        virt_install_import:
+          wait: 0
+          name: mytails
+          os_type: Linux
+          os_variant: debian12
+          network: network:default
+          graphics: spice
+          disks:
+            - /home/staf/Downloads/isos/tails/tails-amd64-6.6.iso,device=cdrom
