@@ -1,0 +1,16 @@
+---
+- name: Install libvirt & co
+  gather_facts: true
+  hosts: kvm_hosts
+  become: true
+  tasks:
+    - name: Install the requirements
+      include_role:
+        name: "{{ item }}"
+        tasks_from:
+          install
+      with_items:
+        - stafwag.libvirt
+        - stafwag.qemu_img
+        - stafwag.cloud_localds
+        - stafwag.virt_install_import
