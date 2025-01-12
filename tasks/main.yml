@@ -16,6 +16,7 @@
 
 - name: Install virt-install related packages
   ansible.builtin.include_tasks: install.yml
+  run_once: True
   args:
     apply:
       tags:
