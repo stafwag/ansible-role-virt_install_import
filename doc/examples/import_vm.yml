@@ -13,4 +13,4 @@
           network: network:default
           graphics: spice
           disks:
-            - /home/staf/Downloads/isos/tails/tails-amd64-6.6.iso,device=cdrom
+            - /home/staf/Downloads/isos/tails/tails-amd64-6.11.iso,device=cdrom
