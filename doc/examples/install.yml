@@ -1,7 +1,7 @@
 ---
 - name: Install libvirt & co
   gather_facts: true
-  hosts: kvm_hosts
+  hosts: localhost
   become: true
   tasks:
     - name: Install the requirements
