@@ -16,7 +16,7 @@
 
 - name: Install virt-install related packages
   ansible.builtin.include_tasks: install.yml
-  run_once: True
+  run_once: true
   args:
     apply:
       tags:
@@ -34,7 +34,7 @@
       --memory {{ virt_install_import.memory | default(1024) }}
       --vcpus {{ virt_install_import.vcpu | default(1) }}
       --virt-type {{ virt_install_import.virt_type | default('kvm') }}
-      --graphics {{ virt_install.graphics | default('none') }}
+      --graphics {{ virt_install_import.graphics | default('none') }}
 
 - name: Add autostart to the cmd
   ansible.builtin.set_fact:

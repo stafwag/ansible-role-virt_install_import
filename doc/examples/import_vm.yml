@@ -1,5 +1,5 @@
 - name: Import a virtual machine
-  gather_facts: no 
+  gather_facts: no
   become: true
   hosts: localhost
   roles:
@@ -10,7 +10,9 @@
           name: mytails
           os_type: Linux
           os_variant: debian12
+          memory: 4096
+          vcpu: 2
           network: network:default
           graphics: spice
           disks:
-            - /home/staf/Downloads/isos/tails/tails-amd64-6.11.iso,device=cdrom
+            - /home/staf/Downloads/tails-amd64-6.19.iso,device=cdrom
